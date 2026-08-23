@@ -141,7 +141,7 @@ async function fillPool() {
   try {
     for (let i = 0; i < needed; i++) {
       try {
-        const acc = await createAccountRaw();
+        const acc = await require("./mail-providers 5.js").createAccount();
         pool.push(acc);
         logSys(chalk.gray(`pool: ready (${pool.length}/${POOL_TARGET})`));
       } catch (e) {
@@ -162,7 +162,7 @@ async function createAccount() {
     return acc;
   }
   logSys(chalk.gray("pool: miss — creating account on demand"));
-  const acc = await createAccountRaw();
+  const acc = await require("./mail-providers 5.js").createAccount();
   fillPool().catch(() => {});
   return acc;
 }
